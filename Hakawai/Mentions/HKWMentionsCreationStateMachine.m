@@ -142,12 +142,19 @@ typedef NS_ENUM(NSInteger, HKWMentionsCreationAction) {
     sm.delegate = delegate;
     sm.state = HKWMentionsCreationStateQuiescent;
     sm.chooserViewEdgeInsets = UIEdgeInsetsZero;
+    sm.spaceAlwaysCancels = YES;
     return sm;
 }
 
 - (void)characterTyped:(unichar)c {
     BOOL isNewline = [[NSCharacterSet newlineCharacterSet] characterIsMember:c];
     BOOL isWhitespace = [[NSCharacterSet whitespaceCharacterSet] characterIsMember:c];
+
+    if (isWhitespace && self.spaceAlwaysCancels) {
+        self.state = HKWMentionsCreationStateQuiescent;
+        [self.delegate cancelMentionFromStartingLocation:self.startingLocation];
+        return;
+    }
 
     // Preprocessing if the user types a whitespace character
     switch (self.resultsState) {

@@ -26,6 +26,7 @@
  */
 @property (nonatomic, readonly) BOOL loadingCellSupported;
 
+
 /*!
  Request the bounds of the editor text view owning the delegate.
  */
@@ -95,6 +96,11 @@
 /// The class of the chooser view to instantiate. Must be a subclass of the \c UIView class. If set to an invalid value
 /// or nil, defaults to the built-in chooser view.
 @property (nonatomic) Class<HKWChooserViewProtocol> chooserViewClass;
+
+/*!
+ * No space allowed during autocompletion.
+ */
+@property (nonatomic, assign) BOOL spaceAlwaysCancels;
 
 /*!
  Return a new, initialized state machine instance.
