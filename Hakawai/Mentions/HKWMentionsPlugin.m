@@ -1630,6 +1630,11 @@ typedef NS_ENUM(NSInteger, HKWMentionsState) {
     BOOL canRestart = ([whitespaces characterIsMember:[self.parentTextView characterPrecedingLocation:currentLocation]]
                        || (self.characterForAdvanceStateForCharacterInsertion != 0
                            && [whitespaces characterIsMember:self.characterForAdvanceStateForCharacterInsertion]));
+
+    // Remove unfinished mention
+    [self.parentTextView removeTextForRange:NSMakeRange(location, currentLocation-location)];
+    [self.parentTextView setSelectedRange:NSMakeRange(location, 0)];
+
     [self performMentionCreationEndCleanup:canRestart];
     [self.parentTextView restoreOriginalAutocorrection:(self.state != HKWMentionsStateLosingFocus)];
 }
