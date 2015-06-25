@@ -329,6 +329,13 @@ typedef NS_ENUM(NSInteger, HKWMentionsPluginState) {
 @property (nonatomic) BOOL resumeMentionsCreationEnabled;
 
 
+#pragma mark - Styling
+
+/*!
+ * Dictionary of styles NSString -> NSDictionary, where key is "style" attribute of mention metadata dictionary
+ */
+@property (nonatomic, strong) NSDictionary *mentionStyles;
+
 #pragma mark - Chooser UI Configuration
 
 /*! 

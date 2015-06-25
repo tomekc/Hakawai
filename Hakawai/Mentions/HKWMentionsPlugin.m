@@ -1655,6 +1655,13 @@ typedef NS_ENUM(NSInteger, HKWMentionsState) {
     UIColor *parentColor = self.parentTextView.textColorSetByApp;
     NSAssert(self.mentionUnselectedAttributes != nil, @"Error! Mention attribute dictionaries should never be nil.");
     NSDictionary *unselectedAttributes = self.mentionUnselectedAttributes;
+    NSString *customStyleName = mention.metadata[@"style"];
+    if (customStyleName) {
+        NSDictionary *attribs = self.mentionStyles[customStyleName];
+        if (attribs) {
+             unselectedAttributes = attribs;
+        }
+     }
     [self.parentTextView transformTextAtRange:NSMakeRange(location, currentLocation - location)
                               withTransformer:^NSAttributedString *(NSAttributedString *input) {
                                   NSMutableDictionary *attributes = [unselectedAttributes mutableCopy];
