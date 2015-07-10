@@ -157,19 +157,19 @@ typedef NS_ENUM(NSInteger, HKWMentionsCreationAction) {
     }
 
     // Preprocessing if the user types a whitespace character
-    switch (self.resultsState) {
-        case HKWMentionsCreationResultsStateQuiescent:
-        case HKWMentionsCreationResultsStateCreatingMentionWithResults:
-            break;
-        case HKWMentionsCreationResultsStateAwaitingFirstResult:
-        case HKWMentionsCreationResultsStateNoResultsWithoutWhitespace:
-            // If the user types a whitespace when there are no results, cancel mentions creation
-            if (isWhitespace) {
-                self.state = HKWMentionsCreationStateQuiescent;
-                [self.delegate cancelMentionFromStartingLocation:self.startingLocation];
-                return;
-            }
-    }
+//    switch (self.resultsState) {
+//        case HKWMentionsCreationResultsStateQuiescent:
+//        case HKWMentionsCreationResultsStateCreatingMentionWithResults:
+//            break;
+//        case HKWMentionsCreationResultsStateAwaitingFirstResult:
+//        case HKWMentionsCreationResultsStateNoResultsWithoutWhitespace:
+//            // If the user types a whitespace when there are no results, cancel mentions creation
+//            if (isWhitespace) {
+//                self.state = HKWMentionsCreationStateQuiescent;
+//                [self.delegate cancelMentionFromStartingLocation:self.startingLocation];
+//                return;
+//            }
+//    }
     if ([self.stringBuffer length] == 0 && isWhitespace) {
         self.state = HKWMentionsCreationStateQuiescent;
         [self.delegate cancelMentionFromStartingLocation:self.startingLocation];
