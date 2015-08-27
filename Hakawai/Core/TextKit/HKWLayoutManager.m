@@ -154,7 +154,7 @@ typedef NSMutableArray RectValuesBuffer;
                                                // If there are trailing whitespace/newlines, remove them.
                                                NSRange subRange = NSMakeRange(glyphRange.location, glyphRange.length-count);
                                                CGRect subRect = [self boundingRectForGlyphRange:subRange inTextContainer:textContainer];
-                                               [lineFragments addObject:[NSValue valueWithCGRect:subRect]];
+                                               [lineFragments addObject:[NSValue valueWithCGRect:CGRectInset(subRect, 0, 2)]];
                                            }
                                        }];
 
