@@ -300,6 +300,13 @@ typedef NS_ENUM(NSInteger, HKWMentionsState) {
     NSInteger location = self.parentTextView.selectedRange.location;
     NSRange originalRange = NSMakeRange(location, 0);
     NSDictionary *mentionAttributes = self.mentionUnselectedAttributes;
+    NSString *customStyleName = mention.metadata[@"style"];
+    if (customStyleName) {
+        NSDictionary *attribs = self.mentionStyles[customStyleName];
+        if (attribs) {
+            mentionAttributes = attribs;
+        }
+    }
     // Mentions cannot overlap. In order to avoid inconsistency, destroy any existing mentions that intrude within the
     //  new mention's range.
     [self bleachMentionsWithinRange:mention.range];
