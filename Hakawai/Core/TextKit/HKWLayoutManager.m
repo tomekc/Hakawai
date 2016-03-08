@@ -95,7 +95,7 @@ typedef NSMutableArray RectValuesBuffer;
                                     options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                                  usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
                                      for (NSString *attr in attrs) {
-                                         if (attr == HKWRoundedRectBackgroundAttributeName) {
+                                         if ([attr  isEqualToString:HKWRoundedRectBackgroundAttributeName]) {
                                              RoundedRectAttributeTuple *tuple = @[[NSValue valueWithRange:range],
                                                                                   attrs[attr]];
                                              [buffer addObject:tuple];
